@@ -91,12 +91,12 @@ call plug#begin('~/.vim/plugged/')
   Plug 'preservim/nerdtree'
   Plug 'dense-analysis/ale'
   Plug 'ayu-theme/ayu-vim'
-  set termguicolors
-  let ayucolor="dark"
-  colorscheme ayu
+
 call plug#end()
 " }}}
-
+set termguicolors
+let ayucolor="dark"
+colorscheme ayu
 
 " MAPPINGS --------------------------------------------------------------- {{{
 
