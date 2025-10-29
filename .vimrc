@@ -12,6 +12,7 @@ noremap! <Right> <NOP>
 nnoremap <C-D> <C-D>zz
 nnoremap <C-U> <C-U>zz
 
+set encoding=utf-8
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
 
@@ -89,14 +90,37 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 " PLUGINS ---------------------------------------------------------------- {{{
 call plug#begin('~/.vim/plugged/')
   Plug 'preservim/nerdtree'
-  Plug 'dense-analysis/ale'
   Plug 'ayu-theme/ayu-vim'
-
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 " }}}
+" LSP -------------------------------------------------------------------- {{{
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <c-@> coc#refresh()
+" }}}
+" COLORSCHEME + NERDTREE ----------------------------------------------------{{{
 set termguicolors
 let ayucolor="dark"
 colorscheme ayu
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
+" }}}
 
 " MAPPINGS --------------------------------------------------------------- {{{
 
